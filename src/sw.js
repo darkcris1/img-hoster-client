@@ -15,7 +15,7 @@ import { RoutifyPlugin, freshCacheData } from '@roxi/routify/workbox-plugin'
  * CONFIG *
  **********/
 
-const entrypointUrl = 'index.html' // entrypoint
+const entrypointUrl = '__app.html' // entrypoint
 const fallbackImage = '404.svg'
 const files = self.__WB_MANIFEST // files matching globDirectory and globPattern in rollup.config.js
 
@@ -38,13 +38,13 @@ const externalAssetsConfig = () => ({
 
 /**
  * precache all files
- * remember to precache index.html and 404.svg if caching of all files is disabled
+ * remember to precache __app.html and 404.svg if caching of all files is disabled
  */
 precacheAndRoute(files)
 
 /** precache only fallback files */
 // precacheAndRoute(files.filter(file =>
-//   ['index.html', '404.svg']
+//   ['__app.html', '404.svg']
 //     .includes(file.url)
 // ))
 
@@ -61,7 +61,7 @@ clientsClaim() // take control of client without having to wait for refresh
  * ROUTES *
  **********/
 
-// serve local pages from the SPA entry point (index.html)
+// serve local pages from the SPA entry point (__app.html)
 registerRoute(isLocalPage, matchPrecache(entrypointUrl))
 
 // serve local assets from cache first
