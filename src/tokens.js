@@ -1,0 +1,6 @@
+const local_token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjIsIm9yaWdpbnMiOlsibG9jYWxob3N0Il19.VunrLWl0R-ch5AUllK_yNSob7UCGIb976gVdego8f_s'
+const prod_token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmlnaW5zIjpbInJlZ2V4OmltZy1ob3N0ZXJcXC5uZXRsaWZ5XFwuYXBwIiwiaW1nLWhvc3Rlci5uZXRsaWZ5LmFwcCIsImRhcmtjcmlzMS5naXRodWIuaW8iXSwiaWF0IjoxNTE2MjM5MDIyfQ.fOkknYN2lwN57bP5SE5S4a-fxRmGlv1qqdlVvYq_RM8'
+export const token =
+  process.env.NODE_ENV === 'production' ? prod_token : local_token

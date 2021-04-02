@@ -1,0 +1,5 @@
+@keyframes load {
+  to {
+    left: 150%;
+  }
+}
