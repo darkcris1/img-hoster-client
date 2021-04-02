@@ -16,6 +16,7 @@ const buildDir = `${distDir}/build`
 const isNollup = !!process.env.NOLLUP
 const production = !process.env.ROLLUP_WATCH
 
+process.env.NODE_ENV = production ? 'production' : 'development'
 // clear previous builds
 removeSync(distDir)
 removeSync(buildDir)
@@ -72,11 +73,6 @@ export default {
       dedupe: (importee) => !!importee.match(/svelte(\/|$)/),
     }),
     commonjs(),
-
-    production && terser(),
-    !production && !isNollup && serve(),
-    !production && !isNollup && livereload(distDir), // refresh entire window when code is updated
-    !production && isNollup && Hmr({ inMemory: true, public: assetsDir }), // refresh only updated code
     {
       // provide node environment on the client
       transform: (code) => ({
@@ -87,6 +83,11 @@ export default {
         map: { mappings: '' },
       }),
     },
+    production && terser(),
+    !production && !isNollup && serve(),
+    !production && !isNollup && livereload(distDir), // refresh entire window when code is updated
+    !production && isNollup && Hmr({ inMemory: true, public: assetsDir }), // refresh only updated code
+
     injectManifest({
       globDirectory: assetsDir,
       globPatterns: ['**/*.{js,css,svg}', '__app.html'],
