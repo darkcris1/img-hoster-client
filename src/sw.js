@@ -5,11 +5,7 @@ import {
   setDefaultHandler,
   setCatchHandler,
 } from 'workbox-routing'
-import {
-  CacheFirst,
-  NetworkFirst,
-  StaleWhileRevalidate,
-} from 'workbox-strategies'
+import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
 import { skipWaiting, clientsClaim } from 'workbox-core'
 import { precacheAndRoute, matchPrecache } from 'workbox-precaching'
 import { ExpirationPlugin } from 'workbox-expiration'
@@ -69,10 +65,10 @@ clientsClaim() // take control of client without having to wait for refresh
 registerRoute(isLocalPage, matchPrecache(entrypointUrl))
 
 // serve local assets from cache first
-registerRoute(isLocalAsset, new CacheFirst())
+registerRoute(isLocalAsset, new NetworkFirst())
 
 // serve external assets from cache if they're fresh
-registerRoute(hasFreshCache, new CacheFirst(externalAssetsConfig()))
+registerRoute(hasFreshCache, new NetworkFirst(externalAssetsConfig()))
 
 // serve external pages and assets
 setDefaultHandler(new NetworkFirst(externalAssetsConfig()))
