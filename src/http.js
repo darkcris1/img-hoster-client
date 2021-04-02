@@ -1,9 +1,9 @@
+import { token } from './tokens'
 const defaults = {
   baseUrl: 'https://img-hoster.herokuapp.com/',
   options: {
     headers: {
-      Authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjIsIm9yaWdpbnMiOlsibG9jYWxob3N0Il19.VunrLWl0R-ch5AUllK_yNSob7UCGIb976gVdego8f_s',
+      Authorization: token,
     },
   },
 }
