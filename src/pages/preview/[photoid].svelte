@@ -11,9 +11,14 @@
   let imageLoading = true
   let isLoaded = true
 
-  $: metatags.title = imageName
-
+  
   let imageSrc, hrefSrc
+
+
+  $: metatags.title = imageName
+  $: metatags.image = imageSrc
+  $: metatags.description = `Image hosted for free ${imageName}`
+
   onMount(async () => {
     try {
       const res = await fetcher.get('/photo/' + photoid)
